@@ -1,18 +1,19 @@
 package com.xyz.EmployeeManagement.service;
 
+import com.xyz.EmployeeManagement.Exception.CustomException;
 import com.xyz.EmployeeManagement.model.Department;
 import com.xyz.EmployeeManagement.model.Store;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class StoreServiceTest {
@@ -62,4 +63,15 @@ class StoreServiceTest {
         assertEquals(2, storeSvcResp.getDepartmentsList().size());
     }
 
+    @Test
+    public void givenAddDepartmentToStoreWhen1DepartmentAddedToStoreWhichDoesNotExistShouldThrowCustomException() {
+        long storeIdWhichDoesNotExist = 1000L;
+        Department d1 = new Department(20L, "D1", LocalTime.of(7, 0), LocalTime.of(10, 0));
+
+        CustomException customException = assertThrows(CustomException.class, () -> storeService.addDepartmentToStore(d1, storeIdWhichDoesNotExist));
+
+        assertEquals(customException.getHttpStatus(), HttpStatus.NOT_FOUND);
+        assertEquals(customException.getErrorMessage(), "Store with id: " + storeIdWhichDoesNotExist + " does not exist");
+
+    }
 }
