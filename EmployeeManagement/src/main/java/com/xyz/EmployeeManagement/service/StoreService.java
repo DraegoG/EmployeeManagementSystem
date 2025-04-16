@@ -28,7 +28,6 @@ public class StoreService {
         if (storeMap.containsKey(storeId)) {
             storeMap.get(storeId).getDepartmentsList().add(department);
         } else { //store not found
-
             throw new CustomException(HttpStatus.NOT_FOUND, "Store with id: " + storeId + " does not exist");
         }
         return storeMap.get(storeId);

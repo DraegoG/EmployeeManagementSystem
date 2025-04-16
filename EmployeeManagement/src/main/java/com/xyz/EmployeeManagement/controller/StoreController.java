@@ -25,7 +25,7 @@ public class StoreController {
         Store store1 = storeService.addStoreToMap(store);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.CREATED)
                 .body(store1);
     }
 
