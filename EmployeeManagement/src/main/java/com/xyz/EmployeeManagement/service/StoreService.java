@@ -1,6 +1,6 @@
 package com.xyz.EmployeeManagement.service;
 
-import com.xyz.EmployeeManagement.Exception.CustomException;
+import com.xyz.EmployeeManagement.exception.CustomException;
 import com.xyz.EmployeeManagement.model.Department;
 import com.xyz.EmployeeManagement.model.Store;
 import org.springframework.http.HttpStatus;
@@ -24,9 +24,11 @@ public class StoreService {
         return newStore;
     }
 
-    public Store addDepartmentToStore(Department department, Long storeId) throws CustomException {
+    public Store addDepartmentToStore(List<Department> departmentList, Long storeId) throws CustomException {
         if (storeMap.containsKey(storeId)) {
-            storeMap.get(storeId).getDepartmentsList().add(department);
+            for(Department department: departmentList) {
+                storeMap.get(storeId).getDepartmentsMap().put(department.getId(), department);
+            }
         } else { //store not found
             throw new CustomException(HttpStatus.NOT_FOUND, "Store with id: " + storeId + " does not exist");
         }

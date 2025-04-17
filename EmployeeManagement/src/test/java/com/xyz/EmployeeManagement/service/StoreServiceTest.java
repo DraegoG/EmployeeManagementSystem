@@ -1,6 +1,6 @@
 package com.xyz.EmployeeManagement.service;
 
-import com.xyz.EmployeeManagement.Exception.CustomException;
+import com.xyz.EmployeeManagement.exception.CustomException;
 import com.xyz.EmployeeManagement.model.Department;
 import com.xyz.EmployeeManagement.model.Store;
 import org.junit.jupiter.api.Test;
@@ -57,10 +57,9 @@ class StoreServiceTest {
         Department d1 = new Department(20L, "D1", LocalTime.of(7, 0), LocalTime.of(10, 0));
         Department d2 = new Department(30L, "D2", LocalTime.of(11, 0), LocalTime.of(13, 0));
 
-        storeService.addDepartmentToStore(d1, storeId);
-        Store storeSvcResp = storeService.addDepartmentToStore(d2, storeId);
+        Store storeSvcResp = storeService.addDepartmentToStore(Arrays.asList(d1, d2), storeId);
 
-        assertEquals(2, storeSvcResp.getDepartmentsList().size());
+        assertEquals(2, storeSvcResp.getDepartmentsMap().size());
     }
 
     @Test
@@ -68,7 +67,7 @@ class StoreServiceTest {
         long storeIdWhichDoesNotExist = 1000L;
         Department d1 = new Department(20L, "D1", LocalTime.of(7, 0), LocalTime.of(10, 0));
 
-        CustomException customException = assertThrows(CustomException.class, () -> storeService.addDepartmentToStore(d1, storeIdWhichDoesNotExist));
+        CustomException customException = assertThrows(CustomException.class, () -> storeService.addDepartmentToStore(Arrays.asList(d1), storeIdWhichDoesNotExist));
 
         assertEquals(customException.getHttpStatus(), HttpStatus.NOT_FOUND);
         assertEquals(customException.getErrorMessage(), "Store with id: " + storeIdWhichDoesNotExist + " does not exist");

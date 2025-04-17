@@ -2,22 +2,21 @@ package com.xyz.EmployeeManagement.model;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Data
 public class Store {
     private long id;
     private String name;
     private String location;
-    private List<Department> departmentsList;
-    private List<Long> employeeIdListWorkingInCurrentStore;
+    private Map<Long, Department> departmentsMap;
 
     public Store(long id, String name, String location) {
         this.id = id;
         this.name = name;
         this.location = location;
-        this.departmentsList = new ArrayList<>();
+        this.departmentsMap = new ConcurrentHashMap<>();
     }
 
 }

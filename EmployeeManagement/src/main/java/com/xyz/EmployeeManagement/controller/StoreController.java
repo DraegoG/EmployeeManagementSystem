@@ -29,11 +29,12 @@ public class StoreController {
                 .body(store1);
     }
 
-    @PostMapping("/{storeId}/department")
-    public ResponseEntity<Store> addDepartment(@RequestBody Department department, @PathVariable(value = "storeId") Long storeId) {
+    @PostMapping("/{storeId}/departments")
+    public ResponseEntity<Store> addDepartment(@RequestBody List<Department> departmentList, @PathVariable(value = "storeId") Long storeId) {
+
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(storeService.addDepartmentToStore(department, storeId));
+                .body(storeService.addDepartmentToStore(departmentList, storeId));
     }
 
     @GetMapping
