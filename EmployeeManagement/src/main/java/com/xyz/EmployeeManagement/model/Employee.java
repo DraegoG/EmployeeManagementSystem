@@ -1,19 +1,26 @@
 package com.xyz.EmployeeManagement.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
 
     private long id;
     private String name;
-    private List<Department> departmentIdsToServe;
+    private long storeId;
+    private List<Long> departmentIdsToServe = new ArrayList<>();
 
-    public Employee(long id, String name, List<Department> departmentIdsToServe) {
+    public Employee(long id, String name, long storeId) {
         this.id = id;
         this.name = name;
-        this.departmentIdsToServe = departmentIdsToServe;
+        this.storeId = storeId;
     }
+
 }
