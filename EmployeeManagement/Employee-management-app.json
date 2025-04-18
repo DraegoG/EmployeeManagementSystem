@@ -1,0 +1,158 @@
+{
+  "info": {
+    "name": "Employee management app",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "bruno",
+      "event": []
+    },
+    {
+      "name": "Store",
+      "item": [
+        {
+          "name": "Get all stores",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/stores",
+              "host": [
+                "localhost"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Add store",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/stores",
+              "host": [
+                "localhost"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 0,\n  \"name\": \"S0\",\n  \"location\": \"Delhi\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Add Departments to store",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/stores/0/departments",
+              "host": [
+                "localhost"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": 1,\n    \"departmentName\": \"d1\",\n    \"startTime\": \"07:00\",\n    \"endTime\": \"10:00\"\n  },\n  {\n    \"id\": 2,\n    \"departmentName\": \"d2\",\n    \"startTime\": \"19:00\",\n    \"endTime\": \"21:00\"\n  },\n  {\n    \"id\": 3,\n    \"departmentName\": \"d3\",\n    \"startTime\": \"09:00\",\n    \"endTime\": \"12:00\"\n  },\n  {\n    \"id\": 4,\n    \"departmentName\": \"d4\",\n    \"startTime\": \"14:00\",\n    \"endTime\": \"16:00\"\n  },\n  {\n    \"id\": 5,\n    \"departmentName\": \"d5\",\n    \"startTime\": \"15:00\",\n    \"endTime\": \"18:00\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employee",
+      "item": [
+        {
+          "name": "Add employee",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/employees",
+              "host": [
+                "localhost"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 0,\n  \"name\": \"Abhishek\",\n  \"storeId\": 0,\n  \"departmentIdsToServe\": [1,2,3,5,4]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Get Employee Timeslots",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/employees/0/timeslots",
+              "host": [
+                "localhost"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Get Employee Does not exist",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/employees/6/timeslots",
+              "host": [
+                "localhost"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": []
+}
