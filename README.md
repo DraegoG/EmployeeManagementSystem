@@ -5,7 +5,8 @@ This includes:
 1. Unit tests
 2. APIs for CRUD operations on resources: Stores and Employees
 3. Swagger implementation
-4. Dockerfile
+4. Handling exceptions using the @ControllerAdvice annotation in spring and throwing custom exceptions
+5. Dockerfile
 
 The docker image link: docker pull draego0301/employee-management
 
